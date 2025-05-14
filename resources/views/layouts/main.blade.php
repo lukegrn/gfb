@@ -12,9 +12,20 @@
 
         <!-- Styles / Scripts -->
         <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+        <link rel="stylesheet" href=" {{ Vite::asset('resources/css/app.css') }}">
     </head>
-    @section('header')
-    @show
+    <header>
+        @section('header')
+        <nav>
+            <a href="/" @if(Route::currentRouteName() == "dashboard.index") aria-current="true" @endif>Dashboard</a>
+            <a href="/plans" @if(Route::currentRouteName() == "plans.index") aria-current="true" @endif>Plans</a>
+            <a href="/incomes" @if(Route::currentRouteName() == "incomes.index") aria-current="true" @endif >Incomes</a>
+        </nav>
+        <button form="logout" type="submit">Log out</button>
+        <form id=logout action="/logout" method="POST" style="display: none;">@csrf</form>
+        @show
+    </header>
+
     <body>
         <main>
             @yield('content')
