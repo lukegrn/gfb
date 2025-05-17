@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Plan extends Model
@@ -14,5 +15,10 @@ class Plan extends Model
     public function lineItems(): HasMany
     {
         return $this->hasMany(LineItem::class);
+    }
+
+    public function houseHold(): BelongsTo
+    {
+        return $this->belongsTo(Household::class);
     }
 }
