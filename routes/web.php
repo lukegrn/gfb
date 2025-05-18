@@ -16,9 +16,9 @@ Route::controller(LoginController::class)->group(function () {
 Route::view('success', 'success');
 
 // Sign Up
-Route::middleware(PasswordProtectSignup::class)->controller(SignupController::class)->group(function () {
+Route::controller(SignupController::class)->group(function () {
     Route::get('signup', 'render');
-    Route::post('signup', 'create');
+    Route::post('signup', 'create')->middleware(PasswordProtectSignup::class);
 });
 
 Route::middleware('auth')->group(function () {

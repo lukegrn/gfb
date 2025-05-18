@@ -18,16 +18,12 @@ class PasswordProtectSignup
     {
         $signup_code = $request->input('signup_code', '');
 
-        if ($request->method() == "GET") {
+        if (Config::get('auth.signup_code') === $signup_code) {
             return $next($request);
-        } else {
-            if (Config::get('auth.signup_code') === $signup_code) {
-                return $next($request);
-            }
-
-            return back()->withErrors([
-                'signup_code' => 'Invalid signup code provided.',
-            ])->onlyInput('email');
         }
+
+        return back()->withErrors([
+            'signup_code' => 'Invalid signup code provided.',
+        ])->withInput();
     }
 }
