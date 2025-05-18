@@ -112,4 +112,15 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Signup Key
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the sign up key for the application so that only users
+    | who have been given this key may sign up. Defaults to the empty string in
+    | case you do not want to require this value.
+    */
+
+    'signup_code' => env('SIGNUP_CODE', ""),
 ];
