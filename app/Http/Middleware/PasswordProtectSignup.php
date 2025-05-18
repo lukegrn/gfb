@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PasswordProtectSignup
 {
     /**
-     * Ensure the configured password is provided for modification requests
+     * Ensure the configured password is provided
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
