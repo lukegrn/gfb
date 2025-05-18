@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')
-<p>Hello, dashboard</p>
+<p>Hello, {{ $name }}</p>
 @endsection
