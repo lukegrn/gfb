@@ -48,7 +48,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function houseHold(): BelongsTo
+    public function household(): BelongsTo
     {
         return $this->belongsTo(Household::class);
     }

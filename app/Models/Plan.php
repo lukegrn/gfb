@@ -17,7 +17,7 @@ class Plan extends Model
         return $this->hasMany(LineItem::class);
     }
 
-    public function houseHold(): BelongsTo
+    public function household(): BelongsTo
     {
         return $this->belongsTo(Household::class);
     }

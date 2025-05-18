@@ -17,9 +17,10 @@
     <header>
         @section('header')
         <nav>
-            <a href="/" @if(Route::currentRouteName() == "dashboard.index") aria-current="true" @endif>Dashboard</a>
+            <a href="/" @if(Route::currentRouteName() == "dashboard.render") aria-current="true" @endif>Dashboard</a>
             <a href="/plans" @if(Route::currentRouteName() == "plans.index") aria-current="true" @endif>Plans</a>
             <a href="/incomes" @if(Route::currentRouteName() == "incomes.index") aria-current="true" @endif >Incomes</a>
+            <a href="/household" @if(Route::currentRouteName() == "household.render") aria-current="true" @endif >Household</a>
         </nav>
         <button form="logout" type="submit">Log out</button>
         <form id=logout action="/logout" method="POST" style="display: none;">@csrf</form>
