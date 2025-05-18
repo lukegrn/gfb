@@ -114,7 +114,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Signup Key
+    | Signup Code
     |--------------------------------------------------------------------------
     |
     | Here you may define the sign up key for the application so that only users
