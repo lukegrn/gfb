@@ -9,3 +9,23 @@ header > button {
 .error {
     color: red;
 }
+
+table#users-table {
+    width: 100%;
+}
+
+table#users-table td#delete-user {
+    text-align: center;
+}
+
+table#users-table td#delete-user > button {
+    margin: auto;
+}
+
+#users-header {
+    display: flex;
+}
+
+#users-header b {
+    flex-grow: 1;
+}
