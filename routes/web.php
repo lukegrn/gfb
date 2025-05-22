@@ -35,7 +35,7 @@ Route::view('invalid-invite', 'invalidInvite');
 Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard.render');
 
-    Route::resource('plans', PlanController::class)->only(['index']);
+    Route::resource('plans', PlanController::class)->only(['index', 'store', 'destroy', 'update']);
 
     Route::controller(HouseholdController::class)->group(function () {
         Route::get('household', 'render')->name('household.render');

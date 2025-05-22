@@ -12,7 +12,7 @@
 
         <!-- Styles / Scripts -->
         <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-        <link rel="stylesheet" href=" {{ Vite::asset('resources/css/app.css') }}">
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <header>
         @section('header')
