@@ -29,3 +29,72 @@ table#users-table td#delete-user > button {
 #users-header b {
     flex-grow: 1;
 }
+
+#no-plans {
+    width: 100%;
+    text-align: center;
+}
+
+#create-plan-button-container {
+    width: 100%;
+    text-align: right;
+}
+
+#create-plan > form {
+    display: flex;
+}
+
+#create-plan > form > label  {
+    align-self: center;
+    padding-right: 1rem;
+    margin-left: 2rem;
+}
+
+#create-plan > form > input {
+    align-self: center;
+    margin-bottom: 0;
+}
+
+#create-plan > form > input#create-plan-submit-button {
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+#plans .plan-heading {
+    display: flex;
+}
+
+#plans .plan-heading .plan-title {
+    margin: 0;
+    margin-right: auto;
+}
+
+#plans .edit-plan {
+    margin-right: auto;
+    display: flex;
+}
+
+#plans .edit-plan * {
+    align-self: center;
+    margin-right: 1rem;
+}
+
+.vl {
+    border-left: 2px solid #cccccc;
+    height: 100%;
+}
+
+#plans .edit-plan input {
+    margin-bottom: 0;
+}
+
+.inverted-button {
+    --accent-text: #0d47a1;
+    --accent: #eeeeee;
+    --accent-hover: #cccccc;
+}
+
+#plans .plan-heading .plan-delete-button{
+    --accent: red;
+    --accent-hover: #ff4444;
+}
