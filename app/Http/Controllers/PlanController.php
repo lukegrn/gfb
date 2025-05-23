@@ -29,22 +29,22 @@ class PlanController extends Controller
         return redirect()->route('plans.index');
     }
 
-    public function destroy(int $id)
+    public function destroy(Plan $plan)
     {
-        if (Auth::user()->household != Plan::find($id)->household) {
+        if (Auth::user()->household != $plan->household) {
             return back()->withErrors([
                 'delete' => "Cannot delete plan in another household"
             ]);
         }
 
-        Plan::destroy($id);
+        $plan->delete();
 
         return redirect()->route('plans.index');
     }
 
-    public function update(Request $request, int $id)
+    public function update(Request $request, Plan $plan)
     {
-        if (Auth::user()->household != Plan::find($id)->household) {
+        if (Auth::user()->household != $plan->household) {
             return back()->withErrors([
                 'edit' => "Cannot edit plan in another household"
             ]);
@@ -54,7 +54,7 @@ class PlanController extends Controller
             'name' => 'required'
         ])['name'];
 
-        Plan::findOrFail($id)->update(['name' => $name]);
+        $plan->update(['name' => $name]);
 
         return redirect()->route('plans.index');
     }

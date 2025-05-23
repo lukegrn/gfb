@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HouseholdController;
+use App\Http\Controllers\LineItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SignupController;
@@ -42,7 +43,13 @@ Route::middleware('auth')->group(function () {
         Route::get('household/add-user', 'addUser')->name('household.addUser');
     });
 
+    Route::controller(LineItemController::class)->group(function () {
+        Route::post('plans/{plan}/lineItems', 'store');
+        Route::delete('plans/{plan}/lineItems/{lineItem}', 'destroy');
+        Route::put('plans/{plan}/lineItems/{lineItem}', 'update');
+    });
+
     Route::controller(UserController::class)->group(function () {
-        Route::delete("users/{id}", "delete");
+        Route::delete("users/{user}", "delete");
     });
 });

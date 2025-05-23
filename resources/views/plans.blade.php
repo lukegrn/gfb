@@ -44,7 +44,7 @@
                                 window.toggleVisibility('#edit-plan-{{ $plan->id }}');
                             "x
                         >Edit</button>
-                        <button class="plan-delete-button" form="delete-{{ $plan->id }}">Delete</button>
+                        <button class="delete-button" form="delete-{{ $plan->id }}">Delete</button>
                         <button class="inverted-button"
                             onclick="
                                 window.toggleVisibility('#plan-actions-for-{{ $plan->id }}');
@@ -57,19 +57,75 @@
                         </form>
                     </div>
                 </div>
-                <table>
+                <table id="line-items-for-plan-{{$plan->id}}" class="line-items-for-plan">
                     <tr>
                         <th>Name</th>
                         <th>Amount Allocated</th>
                         <th>Sinking</th>
                     </tr>
-                @foreach ($plan->lineItems as $lineItem)
-                    <tr>
-                        <td>{{ $lineItem->name }}</td>
-                        <td>{{ $lineItem->alloc }}</td>
-                        <td>{{ $lineItem->sinking ? "☑" : "☒" }}</td>
+                    @foreach ($plan->lineItems as $lineItem)
+                        <tr>
+                            <td id="line-item-name-{{$lineItem->id}}">{{ $lineItem->name }}</td>
+                            <td id="line-item-alloc-{{$lineItem->id}}" class="right-align">${{ number_format($lineItem->alloc, 2) }}</td>
+                            <td id="line-item-sinking-{{$lineItem->id}}" class="shrink center-align line-item-{{$lineItem->id}}">{{ $lineItem->sinking ? "☑" : "☐" }}</td>
+                            <td style="display: none;" id="edit-line-item-{{$lineItem->id}}" colspan="3">
+                                <form class="inline-form" action="plans/{{$plan->id}}/lineItems/{{$lineItem->id}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <label for="name">Name: </label>
+                                    <input class="line-item-form-name" type="text" name="name" value="{{$lineItem->name}}">
+                                    <label for="alloc">Amount: </label>
+                                    <input class="line-item-form-alloc" type="number" step="0.01" name="alloc" value="{{$lineItem->alloc}}">
+                                    <label for="sinking">Sinking: </label>
+                                    <input type="checkbox" value="1" name="sinking" @checked($lineItem->sinking)>
+                                    <input type="submit" value="☑">
+                                </form>
+                            </td>
+                            <td class="shrink inverted-button">
+                                <button
+                                    onclick="
+                                        window.toggleVisibility('#line-item-name-{{$lineItem->id}}');
+                                        window.toggleVisibility('#line-item-alloc-{{$lineItem->id}}');
+                                        window.toggleVisibility('#line-item-sinking-{{$lineItem->id}}');
+                                        window.toggleVisibility('#edit-line-item-{{$lineItem->id}}');
+                                    "
+                                >Edit</button>
+                            </td>
+                            <td class="shrink delete-button">
+                                <button form="delete-{{$plan->id}}-lineItem-{{$lineItem->id}}">X</button>
+                            </td>
+                        </tr>
+                        <form
+                            id="delete-{{$plan->id}}-lineItem-{{$lineItem->id}}"
+                            action="/plans/{{$plan->id}}/lineItems/{{$lineItem->id}}"
+                            method="POST"
+                            style="display: none;"
+                        >
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endforeach
+                    <tr id="line-item-form-for-plan-{{$plan->id}}" style="display: none;" class="line-item-form">
+                        <td colspan="5">
+                            <form class="inline-form" action="plans/{{$plan->id}}/lineItems" method="POST">
+                                @csrf
+                                <label for="name">Name: </label>
+                                <input class="line-item-form-name" type="text" name="name">
+                                <label for="alloc">Amount: </label>
+                                <input class="line-item-form-alloc" type="number" step="0.01" name="alloc">
+                                <label for="sinking">Sinking: </label>
+                                <input type="checkbox" value="1" name="sinking">
+                                <input type="submit" value="Add">
+                            </form>
+                        </td>
                     </tr>
-                @endforeach
+                    <tr>
+                        <td colspan="5" class="add-line-item">
+                            <button
+                                onclick="window.toggleVisibility('#line-item-form-for-plan-{{$plan->id}}');"
+                            >+ Line Item</button>
+                        </td>
+                    </tr>
                 </table>
             </section>
         @empty
@@ -77,5 +133,7 @@
                 <p>You have not created any plans.</p>
             </div>
         @endforelse
+        {{-- Stubbed out for troubleshooting form errors --}}
+        {{-- {{$errors}} --}}
     </div>
 @endsection
