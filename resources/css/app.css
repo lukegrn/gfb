@@ -97,6 +97,7 @@ table#users-table td#delete-user > button {
 .delete-button {
     --accent: red;
     --accent-hover: #ff4444; 
+    --accent-text: white;
 }
 
 .line-items-for-plan {
@@ -140,15 +141,31 @@ form.inline-form input[type=submit] {
     margin: 0;
 }
 
-.line-items-for-plan .shrink {
+.shrink {
     width:0.1%;
     white-space: nowrap;
 }
 
-.line-items-for-plan .center-align {
+.center-align {
     text-align: center;
 }
 
-.line-items-for-plan .right-align {
+.right-align {
     text-align: right;
+}
+
+#incomes-table {
+    width: 100%;
+}
+
+#incomes-table button {
+    margin: 0;
+}
+
+.income-form-exp {
+    width: 7rem;
+}
+
+.income-form-name {
+    width: 9rem;
 }

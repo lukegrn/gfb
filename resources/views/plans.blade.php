@@ -60,7 +60,7 @@
                 <table id="line-items-for-plan-{{$plan->id}}" class="line-items-for-plan">
                     <tr>
                         <th>Name</th>
-                        <th>Amount Allocated</th>
+                        <th class="right-align">Amount Allocated</th>
                         <th>Sinking</th>
                     </tr>
                     @foreach ($plan->lineItems as $lineItem)
@@ -81,8 +81,9 @@
                                     <input type="submit" value="☑">
                                 </form>
                             </td>
-                            <td class="shrink inverted-button">
+                            <td class="shrink">
                                 <button
+                                    class="inverted-button"
                                     onclick="
                                         window.toggleVisibility('#line-item-name-{{$lineItem->id}}');
                                         window.toggleVisibility('#line-item-alloc-{{$lineItem->id}}');
@@ -90,9 +91,7 @@
                                         window.toggleVisibility('#edit-line-item-{{$lineItem->id}}');
                                     "
                                 >Edit</button>
-                            </td>
-                            <td class="shrink delete-button">
-                                <button form="delete-{{$plan->id}}-lineItem-{{$lineItem->id}}">X</button>
+                                <button class="delete-button" form="delete-{{$plan->id}}-lineItem-{{$lineItem->id}}">X</button>
                             </td>
                         </tr>
                         <form

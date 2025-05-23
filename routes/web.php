@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HouseholdController;
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LineItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PlanController;
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard.render');
 
     Route::resource('plans', PlanController::class)->only(['index', 'store', 'destroy', 'update']);
+    Route::resource('incomes', IncomeController::class)->only(['index', 'store', 'destroy', 'update']);
 
     Route::controller(HouseholdController::class)->group(function () {
         Route::get('household', 'render')->name('household.render');

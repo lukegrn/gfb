@@ -25,4 +25,9 @@ class Household extends Model
     {
         return $this->hasMany(SignupLink::class);
     }
+
+    public function incomes(): HasMany
+    {
+        return $this->hasMany(Income::class);
+    }
 }
